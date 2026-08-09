@@ -1,0 +1,171 @@
+.section-header {
+  margin-bottom: 3rem;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.section-subtitle {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+}
+
+.about-card {
+  padding: 2rem;
+  border-radius: 20px;
+}
+
+.about-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--glass-border);
+  padding-bottom: 0.8rem;
+}
+
+.story-card p {
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.mt-4 {
+  margin-top: 2rem;
+}
+
+/* Education Timeline */
+.education-timeline h4 {
+  margin-bottom: 1rem;
+  color: var(--accent-color);
+}
+
+.edu-item {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 1.5rem;
+  border-left: 2px solid var(--glass-border);
+}
+
+.edu-item:last-child {
+  margin-bottom: 0;
+}
+
+.edu-dot {
+  position: absolute;
+  left: -6px;
+  top: 5px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accent-color);
+}
+
+.edu-item h5 {
+  font-size: 1rem;
+  color: var(--text-primary);
+  margin-bottom: 0.2rem;
+}
+
+.edu-item span {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.about-right-col {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Loves Grid */
+.loves-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 1.5rem;
+}
+
+.love-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.8rem;
+  padding: 1rem;
+  border-radius: 12px;
+  background: var(--item-bg);
+  transition: all 0.3s ease;
+}
+
+.love-item:hover {
+  background: var(--item-bg-hover);
+  transform: translateY(-5px);
+}
+
+.love-icon {
+  color: var(--primary-color);
+}
+
+.love-item span {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+/* Journey Timeline */
+.journey-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.journey-item {
+  position: relative;
+  padding-left: 25px;
+}
+
+.journey-item::before {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 15px;
+  bottom: -20px;
+  width: 2px;
+  background: var(--glass-border);
+}
+
+.journey-item:last-child::before {
+  display: none;
+}
+
+.journey-dot {
+  position: absolute;
+  left: 0;
+  top: 6px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--primary-color);
+}
+
+.journey-content h5 {
+  font-size: 1rem;
+  color: var(--text-primary);
+  margin-bottom: 0.2rem;
+}
+
+.journey-content p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 992px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+}

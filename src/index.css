@@ -1,0 +1,181 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Light Theme Variables */
+  --bg-color: #f8fafc;
+  --bg-secondary: #f1f5f9;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --accent-color: #0284c7;
+  --primary-color: #2563eb;
+  
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, #2563eb, #0284c7);
+  --gradient-secondary: linear-gradient(135deg, #0284c7, #38bdf8);
+  --gradient-text: linear-gradient(to right, #2563eb, #0284c7);
+  --gradient-bg: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  
+  /* UI Elements */
+  --card-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.5);
+  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+  --nav-bg: rgba(248, 250, 252, 0.85);
+
+  /* Shared Interactive Elements */
+  --item-bg: rgba(0, 0, 0, 0.03);
+  --item-bg-hover: rgba(0, 0, 0, 0.06);
+  --overlay-bg: rgba(255, 255, 255, 0.85);
+  --icon-filter: grayscale(100%) brightness(0.2);
+}
+
+[data-theme='dark'] {
+  /* Dark Theme Variables - Dark Navy and Cyan/Blue accents */
+  --bg-color: #0B1121;
+  --bg-secondary: #162032;
+  --text-primary: #F8FAFC;
+  --text-secondary: #94A3B8;
+  --accent-color: #06b6d4;
+  --primary-color: #3b82f6;
+
+  /* Gradients */
+  --gradient-bg: linear-gradient(135deg, #0B1121 0%, #020617 100%);
+  --gradient-text: linear-gradient(to right, #3b82f6, #06b6d4);
+  --gradient-primary: linear-gradient(135deg, #1d4ed8, #0ea5e9); /* Darker, more intense blue/cyan */
+  
+  /* UI Elements */
+  --card-bg: rgba(22, 32, 50, 0.6);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+  --nav-bg: rgba(11, 17, 33, 0.85);
+
+  /* Shared Interactive Elements */
+  --item-bg: rgba(255, 255, 255, 0.03);
+  --item-bg-hover: rgba(255, 255, 255, 0.06);
+  --overlay-bg: rgba(15, 23, 42, 0.85);
+  --icon-filter: grayscale(100%) brightness(2);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--gradient-bg);
+  background-attachment: fixed;
+  color: var(--text-primary);
+  line-height: 1.6;
+  min-height: 100vh;
+  font-size: 110%; /* Increase base font size slightly */
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* Typography Utility Classes */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.text-gradient {
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+}
+
+/* Layout Utilities */
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.section {
+  padding: 6rem 0;
+}
+
+/* Glassmorphism Utilities */
+.glass {
+  background: var(--card-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  border-radius: 16px;
+}
+
+/* Animations & Transitions */
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  font-family: inherit;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: var(--gradient-primary);
+  color: white;
+  background-size: 200% auto;
+}
+
+.btn-primary:hover {
+  background-position: right center;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--text-primary);
+  border: 2px solid var(--text-primary);
+}
+
+.btn-outline:hover {
+  background: var(--text-primary);
+  color: var(--bg-color);
+  transform: translateY(-2px);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--text-secondary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-color);
+}
