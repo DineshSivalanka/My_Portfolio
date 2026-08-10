@@ -21,7 +21,7 @@ const Navbar = ({ theme, toggleTheme }) => {
           <a href="#skills" onClick={() => setIsOpen(false)}>Skills</a>
           <a href="#contact" onClick={() => setIsOpen(false)}>Contact</a>
           
-          <a href="#projects" className="btn btn-primary nav-resume-btn">Resume</a>
+          <a href="/Dinesh_Resume.pdf" target="_blank" rel="noopener noreferrer" className="btn btn-primary nav-resume-btn">Resume</a>
 
           <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle theme">
             {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
