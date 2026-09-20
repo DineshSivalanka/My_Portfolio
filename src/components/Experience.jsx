@@ -1,130 +1,73 @@
 import { motion } from 'framer-motion';
-import { Briefcase, Award, FileBadge, ExternalLink } from 'lucide-react';
-import './Experience.css';
 
 const Experience = () => {
   const experiences = [
     {
-      type: 'Internship',
-      title: 'MERN Full Stack Development',
-      org: 'EduSkills',
-      duration: '2023 - 2024',
-      desc: 'Developed full stack web applications and gained hands-on experience in modern web technologies.'
+      year: "2024 - Present",
+      title: "Full Stack Developer",
+      subtitle: "Personal & Academic Projects",
+      desc: "Architected and developed full-stack applications like AgroConnect and Construction Worker Safety Portal using React, Spring Boot, and Node.js."
     },
     {
-      type: 'Open Source',
-      title: 'GSSoC Contributor',
-      org: 'GirlScript Summer of Code',
-      duration: '2024',
-      desc: 'Contributed to open source projects, resolving issues and adding new features to existing codebases.'
+      year: "2023 - 2024",
+      title: "DSA & Problem Solving",
+      subtitle: "LeetCode & GeeksForGeeks",
+      desc: "Solved 170+ algorithmic challenges. Built strong foundations in Data Structures, OOPs, and core computer science fundamentals."
     },
     {
-      type: 'Internship',
-      title: 'AWS Cloud Computing - DevOps',
-      org: 'APSSDC',
-      duration: '2023',
-      desc: 'Learned cloud infrastructure, deployment pipelines, and basic DevOps practices.'
+      year: "2022 - 2023",
+      title: "Open Source & Hackathons",
+      subtitle: "Active Contributor",
+      desc: "Participated in university hackathons and collaborated on open-source initiatives to build practical, community-driven software."
     }
   ];
 
-  const certificates = [
-    { name: 'AWS Cloud Practitioner', issuer: 'AWS', link: '#' },
-    { name: 'Java Basics', issuer: 'HackerRank', link: '#' },
-    { name: 'Python Essentials', issuer: 'Cisco NetAcad', link: '#' },
-    { name: 'NPTEL Certification', issuer: 'NPTEL', link: '#' },
-    { name: 'Oracle Cloud Infrastructure', issuer: 'Oracle', link: '#' },
-    { name: 'Infosys Springboard', issuer: 'Infosys', link: '#' }
-  ];
-
-  const achievements = [
-    { year: '2024', title: 'Top Performer in GSSoC', desc: 'Recognized for consistent contributions.' },
-    { year: '2023', title: 'College Hackathon Winner', desc: 'Built an innovative solution for agriculture.' },
-    { year: '2023', title: 'CodeChef 3 Star Rating', desc: 'Consistent performance in coding contests.' }
-  ];
-
   return (
-    <section id="experience" className="experience-section section">
-      <div className="container">
+    <section id="experience" className="relative w-full py-24 sm:py-32 px-6 sm:px-12 bg-brand-bg">
+      <div className="max-w-[1000px] mx-auto">
+        
+        {/* Section Header */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="section-header"
+          className="flex flex-col items-center sm:items-start mb-20 sm:mb-24"
         >
-          <h2 className="section-title text-gradient">Experience & Achievements</h2>
-          <p className="section-subtitle">My professional journey and recognitions.</p>
+          <div className="flex items-center gap-4 mb-4">
+            <span className="text-[12px] font-bold tracking-[0.2em] text-brand-gold uppercase">04 //</span>
+            <div className="w-12 h-[1px] bg-brand-gold/50"></div>
+          </div>
+          <h2 className="font-space font-extrabold text-[40px] sm:text-[56px] text-white uppercase tracking-tight">
+            EXPERIENCE & ACHIEVEMENTS
+          </h2>
         </motion.div>
 
-        <div className="experience-grid">
-          {/* Experience & Roles */}
-          <div className="exp-left-col">
-            <h3 className="sub-heading"><Briefcase size={24} /> Experience & Roles</h3>
-            <div className="exp-timeline">
-              {experiences.map((exp, idx) => (
-                <motion.div 
-                  key={idx}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: idx * 0.1 }}
-                  className="exp-card glass"
-                >
-                  <span className="exp-type">{exp.type}</span>
-                  <h4>{exp.title}</h4>
-                  <div className="exp-meta">
-                    <span className="exp-org">{exp.org}</span>
-                    <span className="exp-duration">{exp.duration}</span>
-                  </div>
-                  <p>{exp.desc}</p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-
-          <div className="exp-right-col">
-            {/* Certificates */}
-            <h3 className="sub-heading"><FileBadge size={24} /> Certifications</h3>
-            <div className="certs-grid">
-              {certificates.map((cert, idx) => (
-                <motion.div 
-                  key={idx}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: idx * 0.1 }}
-                  className="cert-card glass"
-                >
-                  <h5>{cert.name}</h5>
-                  <span className="cert-issuer">{cert.issuer}</span>
-                  <a href={cert.link} target="_blank" rel="noopener noreferrer" className="cert-link">
-                    View <ExternalLink size={14} />
-                  </a>
-                </motion.div>
-              ))}
-            </div>
-
-            {/* Achievements Timeline */}
-            <h3 className="sub-heading mt-4"><Award size={24} /> Achievements</h3>
-            <div className="achievements-timeline">
-              {achievements.map((ach, idx) => (
-                <motion.div 
-                  key={idx}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: idx * 0.1 }}
-                  className="achievement-item"
-                >
-                  <div className="ach-year">{ach.year}</div>
-                  <div className="ach-content glass">
-                    <h5>{ach.title}</h5>
-                    <p>{ach.desc}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
+        {/* Timeline */}
+        <div className="relative border-l border-brand-border/50 ml-4 sm:ml-8 pl-8 sm:pl-16 flex flex-col gap-16">
+          {experiences.map((exp, idx) => (
+            <motion.div 
+              key={idx}
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, delay: idx * 0.2 }}
+              className="relative group"
+            >
+              {/* Timeline Dot */}
+              <div className="absolute -left-[41px] sm:-left-[73px] top-1 w-4 h-4 rounded-full border-2 border-brand-gold bg-brand-bg group-hover:scale-150 group-hover:bg-brand-gold transition-all duration-300"></div>
+              
+              <div className="flex flex-col">
+                <span className="font-space text-brand-gold font-bold tracking-widest text-[14px] mb-2">{exp.year}</span>
+                <h3 className="font-space text-white text-[24px] sm:text-[28px] font-bold mb-1">{exp.title}</h3>
+                <h4 className="text-gray-400 font-medium text-[15px] mb-4">{exp.subtitle}</h4>
+                <p className="text-gray-500 leading-relaxed text-[15px] sm:text-[16px] max-w-[600px]">
+                  {exp.desc}
+                </p>
+              </div>
+            </motion.div>
+          ))}
         </div>
+
       </div>
     </section>
   );

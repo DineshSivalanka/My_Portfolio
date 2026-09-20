@@ -1,127 +1,142 @@
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, GitBranch as Github } from 'lucide-react';
-import './Projects.css';
+import { motion } from 'framer-motion';
+import { ArrowUpRight, GitBranch as Github } from 'lucide-react';
 
 const Projects = () => {
-  const [filter, setFilter] = useState('All');
-
-  const filters = ['All', 'Full Stack', 'Frontend', 'AI/ML'];
-
   const projects = [
     {
-      title: 'AI Agriculture Assistant',
-      description: 'An AI-powered platform that helps farmers analyze crops and get disease predictions using Machine Learning and real-time data.',
-      category: 'AI/ML',
-      image: 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
-      tags: ['React', 'Spring Boot', 'Python', 'ML'],
-      github: '#',
-      demo: '#'
+      id: "01",
+      title: "Construction Worker Safety & Employment Portal",
+      description: "A comprehensive full-stack platform connecting construction workers with contractors and employers. Features include role-based access control, secure authentication, and employment-related workflow management to ensure safety and streamlined hiring processes.",
+      tech: ["React.js", "Spring Boot", "PostgreSQL", "Axios", "JWT", "REST APIs"],
+      github: "https://github.com/DineshSivalanka",
+      demo: null,
+      align: "left"
     },
     {
-      title: 'Construction Worker Portal',
-      description: 'A portal to manage workers, projects, and attendance with admin and worker modules. Includes secure JWT authentication.',
-      category: 'Full Stack',
-      image: 'https://images.unsplash.com/photo-1541888087625-f810f1ce2f81?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
-      tags: ['React', 'Spring Boot', 'PostgreSQL'],
-      github: '#',
-      demo: '#'
+      id: "02",
+      title: "AgroConnect",
+      description: "A specialized marketplace-style platform bridging the gap between farmers and buyers. Empowers farmers to independently create, manage, and scale agricultural product listings while utilizing secure OTP authentication for verified transactions.",
+      tech: ["MongoDB", "Express.js", "React.js", "Node.js", "OTP Auth", "REST APIs"],
+      github: "https://github.com/DineshSivalanka",
+      demo: null,
+      align: "right"
     },
     {
-      title: 'E-Commerce Platform',
-      description: 'Full-stack e-commerce application with product management, cart, payments, and order tracking.',
-      category: 'Full Stack',
-      image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
-      tags: ['React', 'Spring Boot', 'MySQL'],
-      github: '#',
-      demo: '#'
-    },
-    {
-      title: 'Task Manager App',
-      description: 'A productivity app to manage tasks, set priorities, and track progress with real-time updates.',
-      category: 'Frontend',
-      image: 'https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
-      tags: ['React', 'Node.js', 'Firebase'],
-      github: '#',
-      demo: '#'
+      id: "03",
+      title: "Premium Portfolio",
+      description: "A high-end, editorial-style personal brand portfolio designed with luxury dark aesthetics, fluid framer-motion animations, and an optimized Vite architecture. Showcases professional capabilities through asymmetric design and strong typography.",
+      tech: ["React.js", "Tailwind CSS", "Framer Motion", "Vite"],
+      github: "https://github.com/DineshSivalanka",
+      demo: "#",
+      align: "left"
     }
   ];
 
-  const filteredProjects = filter === 'All' 
-    ? projects 
-    : projects.filter(p => p.category === filter);
-
   return (
-    <section id="projects" className="projects-section section">
-      <div className="container">
+    <section id="projects" className="relative w-full py-24 sm:py-32 px-6 sm:px-12 bg-brand-bg">
+      <div className="max-w-[1200px] mx-auto">
+        
+        {/* Section Header */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="section-header"
+          className="flex flex-col items-center sm:items-start mb-20 sm:mb-32"
         >
-          <h2 className="section-title text-gradient">My Projects</h2>
-          <p className="section-subtitle">Building ideas into reality</p>
+          <div className="flex items-center gap-4 mb-4">
+            <span className="text-[12px] font-bold tracking-[0.2em] text-brand-gold uppercase">03 //</span>
+            <div className="w-12 h-[1px] bg-brand-gold/50"></div>
+          </div>
+          <h2 className="font-space font-extrabold text-[40px] sm:text-[56px] text-white uppercase tracking-tight">
+            SELECTED WORKS
+          </h2>
         </motion.div>
 
-        {/* Filters */}
-        <div className="projects-filter">
-          {filters.map((f, idx) => (
-            <button 
-              key={idx} 
-              className={`filter-btn ${filter === f ? 'active' : ''}`}
-              onClick={() => setFilter(f)}
+        {/* Projects List */}
+        <div className="flex flex-col gap-32">
+          {projects.map((project, idx) => (
+            <div 
+              key={project.id} 
+              className={`flex flex-col lg:flex-row gap-12 lg:gap-24 items-center ${project.align === 'right' ? 'lg:flex-row-reverse' : ''}`}
             >
-              {f}
-            </button>
-          ))}
-        </div>
-        
-        <motion.div layout className="projects-grid">
-          <AnimatePresence>
-            {filteredProjects.map((project, index) => (
+              
+              {/* Project Visual Area */}
               <motion.div 
-                layout
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.3 }}
-                key={project.title} 
-                className="project-card glass"
+                initial={{ opacity: 0, x: project.align === 'left' ? -30 : 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.8 }}
+                className="w-full lg:w-3/5 group relative"
               >
-                <div className="project-image-wrapper">
-                  <img src={project.image} alt={project.title} className="project-image" />
-                  <div className="project-overlay">
-                    <div className="project-links-overlay">
-                      <a href={project.demo} className="btn btn-primary btn-sm">Live Demo <ExternalLink size={14} style={{marginLeft: '4px'}}/></a>
-                      <a href={project.github} className="btn btn-outline btn-sm">GitHub <Github size={14} style={{marginLeft: '4px'}}/></a>
+                <div className="aspect-[16/10] w-full bg-brand-card rounded-2xl border border-brand-border overflow-hidden relative p-1 transition-transform duration-700 group-hover:-translate-y-2 group-hover:shadow-[0_20px_40px_-15px_rgba(253,224,71,0.1)]">
+                  {/* Mockup Container */}
+                  <div className="w-full h-full bg-[#0a0a0a] rounded-xl relative overflow-hidden flex flex-col">
+                    <div className="h-8 w-full border-b border-white/5 flex items-center px-4 gap-2 bg-[#121212]">
+                      <div className="w-2.5 h-2.5 rounded-full bg-red-500/80"></div>
+                      <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></div>
+                      <div className="w-2.5 h-2.5 rounded-full bg-green-500/80"></div>
+                    </div>
+                    <div className="flex-1 w-full flex flex-col items-center justify-center p-8 relative">
+                      <div className="absolute inset-0 bg-gradient-to-br from-brand-gold/5 to-transparent"></div>
+                      <h3 className="font-space font-bold text-3xl sm:text-4xl text-white/20 uppercase tracking-widest text-center">{project.title}</h3>
                     </div>
                   </div>
                 </div>
+              </motion.div>
 
-                <div className="project-content">
-                  <h3 className="project-title">{project.title}</h3>
-                  <p className="project-description">{project.description}</p>
-                  <div className="project-tags">
-                    {project.tags.map((tag, i) => (
-                      <span key={i} className="project-tag">{tag}</span>
-                    ))}
-                  </div>
-                  
-                  {/* Buttons for Mobile or static view */}
-                  <div className="project-mobile-links">
-                    <a href={project.demo} className="btn btn-primary btn-sm">Live Demo</a>
-                    <a href={project.github} className="btn btn-outline btn-sm">GitHub</a>
-                  </div>
+              {/* Project Info */}
+              <motion.div 
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="w-full lg:w-2/5 flex flex-col"
+              >
+                <span className="font-script text-brand-gold text-5xl mb-4 italic block leading-none">{project.id}</span>
+                <h3 className="font-space text-[28px] sm:text-[32px] font-bold text-white mb-6 leading-tight">
+                  {project.title}
+                </h3>
+                
+                <p className="text-gray-400 text-[15px] sm:text-[16px] leading-relaxed mb-8">
+                  {project.description}
+                </p>
+
+                <div className="flex flex-wrap gap-2 mb-10">
+                  {project.tech.map((t, i) => (
+                    <span key={i} className="text-[12px] font-medium tracking-wider text-brand-gold uppercase border border-brand-gold/20 px-3 py-1 rounded-full">
+                      {t}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="flex items-center gap-4">
+                  {project.github && (
+                    <a 
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group flex items-center justify-center gap-2 h-12 px-6 rounded-full border border-gray-600 text-white font-medium text-[13px] hover:border-brand-gold hover:text-brand-gold transition-colors"
+                    >
+                      <Github size={16} /> Code
+                    </a>
+                  )}
+                  {project.demo && (
+                    <a 
+                      href={project.demo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group flex items-center justify-center gap-2 h-12 px-6 rounded-full bg-brand-gold text-black font-bold text-[13px] hover:bg-white transition-colors"
+                    >
+                      Live Demo <ArrowUpRight size={16} />
+                    </a>
+                  )}
                 </div>
               </motion.div>
-            ))}
-          </AnimatePresence>
-        </motion.div>
 
-        <div className="view-all-container">
-          <a href="#" className="btn btn-outline">View All Projects →</a>
+            </div>
+          ))}
         </div>
+
       </div>
     </section>
   );

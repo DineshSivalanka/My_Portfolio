@@ -22,17 +22,16 @@ const DSA = ({ theme }) => {
   useEffect(() => {
     const fetchLeetCodeData = async () => {
       try {
-        // Fetch solved stats
         const statsRes = await fetch('https://alfa-leetcode-api.onrender.com/sivalankadinesh2005/solved');
+        if (!statsRes.ok) throw new Error('Rate limit exceeded or API error');
         const statsData = await statsRes.json();
         setLcStats(statsData);
 
-        // Fetch calendar/streak
         const calRes = await fetch('https://alfa-leetcode-api.onrender.com/sivalankadinesh2005/calendar');
+        if (!calRes.ok) throw new Error('Rate limit exceeded or API error');
         const calData = await calRes.json();
         setLcCalendar(calData);
 
-        // Parse Calendar for Heatmap
         if (calData && calData.submissionCalendar) {
           const calendarJson = JSON.parse(calData.submissionCalendar);
           const yearData = [];
@@ -69,21 +68,19 @@ const DSA = ({ theme }) => {
           setCalendarData(yearData);
         }
 
-        // Fetch Skill Stats
         const skillRes = await fetch('https://alfa-leetcode-api.onrender.com/skillStats/sivalankadinesh2005');
+        if (!skillRes.ok) throw new Error('Rate limit exceeded or API error');
         const skillData = await skillRes.json();
         if (skillData && skillData.matchedUser && skillData.matchedUser.tagProblemCounts) {
           const tags = skillData.matchedUser.tagProblemCounts;
-          // Combine all and sort by problems solved
           const allTags = [...tags.advanced, ...tags.intermediate, ...tags.fundamental];
-          const sortedTags = allTags.sort((a, b) => b.problemsSolved - a.problemsSolved).slice(0, 6); // Top 6
+          const sortedTags = allTags.sort((a, b) => b.problemsSolved - a.problemsSolved).slice(0, 6);
           setSkillStats(sortedTags);
         }
 
-        // Fetch recent submissions
         const subRes = await fetch('https://alfa-leetcode-api.onrender.com/sivalankadinesh2005/acSubmission');
+        if (!subRes.ok) throw new Error('Rate limit exceeded or API error');
         const subData = await subRes.json();
-        // Take top 5 recent unique problems
         if (subData && subData.submission) {
           const uniqueSubs = [];
           const seen = new Set();
@@ -107,13 +104,12 @@ const DSA = ({ theme }) => {
   }, []);
 
   const stats = [
-    { label: 'Problems Solved', value: lcStats.solvedProblem, color: 'var(--accent-color)' },
+    { label: 'Problems Solved', value: lcStats.solvedProblem, color: 'var(--color-brand-gold)' },
     { label: 'Easy', value: lcStats.easySolved, color: '#10b981' },
     { label: 'Medium', value: lcStats.mediumSolved, color: '#f59e0b' },
     { label: 'Hard', value: lcStats.hardSolved, color: '#ef4444' }
   ];
 
-  // Map language to Devicon or simple text
   const getLangIcon = (lang) => {
     const langLower = lang.toLowerCase();
     if (langLower.includes('java')) return 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg';
@@ -123,168 +119,75 @@ const DSA = ({ theme }) => {
   };
 
   return (
-    <section id="dsa" className="dsa-section section">
-      <div className="container">
+    <section id="dsa" className="relative w-full py-24 sm:py-32 px-6 sm:px-12 bg-brand-bg">
+      <div className="max-w-[1200px] mx-auto">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="section-header"
+          className="flex flex-col items-center sm:items-start mb-16 sm:mb-24"
         >
-          <h2 className="section-title text-gradient">LeetCode Journey</h2>
-          <p className="section-subtitle">Consistent problem solving & algorithmic thinking.</p>
+          <div className="flex items-center gap-4 mb-4">
+            <span className="text-[12px] font-bold tracking-[0.2em] text-brand-gold uppercase">06 //</span>
+            <div className="w-12 h-[1px] bg-brand-gold/50"></div>
+          </div>
+          <h2 className="font-space font-extrabold text-[40px] sm:text-[56px] text-white uppercase tracking-tight">
+            LEETCODE METRICS
+          </h2>
         </motion.div>
 
-        <div className="dsa-layout">
+        <div className="flex flex-col gap-8">
           
-          {/* Row 1: Quick Stats (Full Width) */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="stats-row"
+            className="grid grid-cols-2 md:grid-cols-4 gap-4"
           >
             {stats.map((stat, idx) => (
-              <div key={idx} className="stat-card glass text-center">
-                <h4 style={{ color: stat.color }}>{loading ? <Loader2 className="animate-spin inline" size={24} /> : stat.value}</h4>
-                <p>{stat.label}</p>
+              <div key={idx} className="glass-card p-6 text-center group hover:border-brand-gold/50 transition-colors">
+                <h4 style={{ color: stat.color }} className="text-3xl font-bold font-space mb-2">
+                  {loading ? <Loader2 className="animate-spin inline" size={24} /> : stat.value}
+                </h4>
+                <p className="text-gray-400 text-sm font-medium tracking-wide uppercase">{stat.label}</p>
               </div>
             ))}
           </motion.div>
 
-          {/* Row 2: Heatmap / Calendar (Full Width) */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="heatmap-card glass"
+            className="glass-card p-8"
           >
-            <div className="card-header space-between mb-4">
-              <h3><Flame className="mr-2 inline" color="#f97316" size={22}/> LeetCode Submissions ({calendarData.length ? new Date(calendarData[0].date).getFullYear() : '2026'})</h3>
-              <span className="streak-count">{loading ? <Loader2 className="animate-spin inline" size={16} /> : `Max Streak: ${lcCalendar.streak} Days`}</span>
+            <div className="flex justify-between items-center mb-8 border-b border-white/10 pb-4">
+              <h3 className="font-space text-lg text-white font-bold flex items-center">
+                <Flame className="mr-2 inline text-brand-gold" size={22}/> Activity
+              </h3>
+              <span className="text-gray-400 text-sm font-medium tracking-widest uppercase">
+                {loading ? <Loader2 className="animate-spin inline" size={16} /> : `Max Streak: ${lcCalendar.streak} Days`}
+              </span>
             </div>
             
-            <div className="calendar-wrapper">
+            <div className="w-full overflow-x-auto pb-4">
               {loading || calendarData.length === 0 ? (
-                <div className="flex justify-center py-8"><Loader2 className="animate-spin text-primary" size={32} /></div>
+                <div className="flex justify-center py-8"><Loader2 className="animate-spin text-brand-gold" size={32} /></div>
               ) : (
                 <ActivityCalendar 
                   data={calendarData} 
                   theme={{
-                    light: ['#1e293b', '#0e4429', '#006d32', '#26a641', '#39d353'],
-                    dark: ['#1e293b', '#0e4429', '#006d32', '#26a641', '#39d353'],
+                    light: ['#121212', '#4d4111', '#806915', '#b3941a', '#FDE047'],
+                    dark: ['#121212', '#4d4111', '#806915', '#b3941a', '#FDE047'],
                   }}
-                  labels={{
-                    totalCount: '{{count}} submissions in the last year',
-                  }}
-                  colorScheme={theme === 'dark' ? "dark" : "light"}
-                  blockSize={14}
-                  blockRadius={3}
-                  blockMargin={5}
-                  fontSize={14}
+                  colorScheme="dark"
+                  blockSize={12}
+                  blockRadius={2}
+                  blockMargin={4}
+                  fontSize={12}
                   showWeekdayLabels={true}
                 />
               )}
-            </div>
-          </motion.div>
-
-          {/* Row 3: Topics & Recent (Two Columns) */}
-          <div className="dsa-two-col">
-            <motion.div 
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="topics-card glass"
-            >
-              <div className="card-header">
-                <h3><Code2 className="mr-2 inline" size={20}/> Top Strong Areas</h3>
-              </div>
-              <div className="topics-list mt-3">
-                {loading && <div className="flex justify-center py-4"><Loader2 className="animate-spin text-primary" size={24} /></div>}
-                {!loading && skillStats.map((topic, idx) => {
-                  const maxProb = skillStats[0]?.problemsSolved || 1;
-                  const progress = (topic.problemsSolved / maxProb) * 100;
-                  return (
-                    <div key={idx} className="topic-item">
-                      <div className="topic-info">
-                        <span>{topic.tagName}</span>
-                        <span className="topic-count">{topic.problemsSolved} Solved</span>
-                      </div>
-                      <div className="progress-bar-bg">
-                        <motion.div 
-                          initial={{ width: 0 }}
-                          whileInView={{ width: `${progress}%` }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 1, delay: 0.2 }}
-                          className="progress-bar-fill"
-                        />
-                      </div>
-                    </div>
-                  )
-                })}
-              </div>
-            </motion.div>
-
-            <motion.div 
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="recent-card glass"
-            >
-              <div className="card-header space-between mb-4">
-                <h3><Target className="mr-2 inline" size={20}/> Recent Solves</h3>
-              </div>
-              <div className="problem-list">
-                {loading && <div className="flex justify-center py-4"><Loader2 className="animate-spin text-primary" size={24} /></div>}
-                {!loading && recentSubs.map((sub, idx) => {
-                  const timeAgo = Math.floor((Date.now() / 1000 - sub.timestamp) / 3600);
-                  const timeDisplay = timeAgo < 24 ? `${timeAgo}h ago` : `${Math.floor(timeAgo/24)}d ago`;
-                  return (
-                    <div key={idx} className="problem-item">
-                      <div className="problem-title">
-                        <GitCommit size={16} className="text-primary mr-3" />
-                        <span>{sub.title}</span>
-                      </div>
-                      <div className="problem-meta">
-                        <span className="problem-time">{timeDisplay}</span>
-                        <img src={getLangIcon(sub.lang)} alt={sub.lang} className="lang-icon-small" />
-                      </div>
-                    </div>
-                  )
-                })}
-              </div>
-            </motion.div>
-          </div>
-
-          {/* Row 4: Platform Profiles (Full Width) */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3 }}
-            className="platforms-card glass"
-          >
-            <h3 className="text-center mb-4">Connect on Other Platforms</h3>
-            <div className="profiles-grid">
-              <a href="https://leetcode.com/u/sivalankadinesh2005/" target="_blank" rel="noopener noreferrer" className="profile-link">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/LeetCode_logo_black.png" alt="LeetCode" />
-                <span>LeetCode</span>
-              </a>
-              <a href="https://www.geeksforgeeks.org/profile/dineshsivalanka" target="_blank" rel="noopener noreferrer" className="profile-link">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/4/43/GeeksforGeeks.svg" alt="GeeksforGeeks" />
-                <span>GeeksforGeeks</span>
-              </a>
-              <a href="https://www.hackerrank.com/profile/DineshSivalanka" target="_blank" rel="noopener noreferrer" className="profile-link">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/4/40/HackerRank_Icon-1000px.png" alt="HackerRank" />
-                <span>HackerRank</span>
-              </a>
-              <a href="https://github.com/DineshSivalanka" target="_blank" rel="noopener noreferrer" className="profile-link">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" />
-                <span>GitHub</span>
-              </a>
             </div>
           </motion.div>
 
