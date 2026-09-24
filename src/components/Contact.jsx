@@ -118,7 +118,7 @@ const Contact = () => {
           className="flex-1"
         >
           <div className="flex items-center gap-4 mb-8">
-            <span className="text-[12px] font-bold tracking-[0.2em] text-brand-gold uppercase">05 //</span>
+            <span className="text-[12px] font-bold tracking-[0.2em] text-brand-gold uppercase">07 //</span>
             <div className="w-12 h-[1px] bg-brand-gold/50"></div>
           </div>
           

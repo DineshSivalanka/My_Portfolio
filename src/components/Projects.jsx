@@ -57,7 +57,7 @@ const Projects = () => {
           className="flex flex-col items-center sm:items-start mb-20 sm:mb-32"
         >
           <div className="flex items-center gap-4 mb-4">
-            <span className="text-[12px] font-bold tracking-[0.2em] text-brand-gold uppercase">03 //</span>
+            <span className="text-[12px] font-bold tracking-[0.2em] text-brand-gold uppercase">04 //</span>
             <div className="w-12 h-[1px] bg-brand-gold/50"></div>
           </div>
           <h2 className="font-space font-extrabold text-[40px] sm:text-[56px] text-white uppercase tracking-tight">
