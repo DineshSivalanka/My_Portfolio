@@ -1,4 +1,4 @@
-import { GitBranch as Github, User as Linkedin, Mail } from 'lucide-react';
+import { GithubIcon, LinkedinIcon, LeetcodeIcon, MailIcon } from './SocialIcons';
 
 const Footer = () => {
   return (
@@ -15,14 +15,17 @@ const Footer = () => {
         </div>
 
         <div className="flex items-center gap-6">
-          <a href="https://github.com/DineshSivalanka" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-brand-gold transition-colors">
-            <Github size={20} />
+          <a href="https://github.com/DineshSivalanka" target="_blank" rel="noopener noreferrer" title="GitHub" className="text-gray-500 hover:text-brand-gold transition-colors">
+            <GithubIcon size={20} />
           </a>
-          <a href="https://www.linkedin.com/in/dinesh-venkata-kumar-sivalanka-5348842a9/" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-brand-gold transition-colors">
-            <Linkedin size={20} />
+          <a href="https://www.linkedin.com/in/dinesh-venkata-kumar-sivalanka-5348842a9/" target="_blank" rel="noopener noreferrer" title="LinkedIn" className="text-gray-500 hover:text-brand-gold transition-colors">
+            <LinkedinIcon size={20} />
           </a>
-          <a href="mailto:sivalankadinesh2005@gmail.com" className="text-gray-500 hover:text-brand-gold transition-colors">
-            <Mail size={20} />
+          <a href="https://leetcode.com/u/sivalankadinesh2005/" target="_blank" rel="noopener noreferrer" title="LeetCode" className="text-gray-500 hover:text-brand-gold transition-colors">
+            <LeetcodeIcon size={20} />
+          </a>
+          <a href="mailto:sivalankadinesh2005@gmail.com" title="Email" className="text-gray-500 hover:text-brand-gold transition-colors">
+            <MailIcon size={20} />
           </a>
         </div>
 

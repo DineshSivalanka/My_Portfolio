@@ -63,7 +63,7 @@ const Skills = () => {
             <div className="w-12 h-[1px] bg-brand-gold/50"></div>
           </div>
           <h2 className="font-space font-extrabold text-[40px] sm:text-[56px] text-white uppercase tracking-tight">
-            SKILLS & EXPERTISE
+            SKILLS
           </h2>
         </motion.div>
 

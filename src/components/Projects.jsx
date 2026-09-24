@@ -8,7 +8,8 @@ const Projects = () => {
       title: "Construction Worker Safety & Employment Portal",
       description: "A comprehensive full-stack platform connecting construction workers with contractors and employers. Features include role-based access control, secure authentication, and employment-related workflow management to ensure safety and streamlined hiring processes.",
       tech: ["React.js", "Spring Boot", "PostgreSQL", "Axios", "JWT", "REST APIs"],
-      github: "https://github.com/DineshSivalanka",
+      image: "/project-construction.jpg",
+      github: "https://github.com/DineshSivalanka/Construction-Worker-Saftey-Employment-Portal",
       demo: null,
       align: "left"
     },
@@ -17,18 +18,30 @@ const Projects = () => {
       title: "AgroConnect",
       description: "A specialized marketplace-style platform bridging the gap between farmers and buyers. Empowers farmers to independently create, manage, and scale agricultural product listings while utilizing secure OTP authentication for verified transactions.",
       tech: ["MongoDB", "Express.js", "React.js", "Node.js", "OTP Auth", "REST APIs"],
-      github: "https://github.com/DineshSivalanka",
-      demo: null,
+      image: "/project-agroconnect.jpg",
+      github: "https://github.com/DineshSivalanka/AgroConnect-Using-MERN",
+      demo: "https://agro-connect-using-mern.vercel.app/",
       align: "right"
     },
     {
       id: "03",
-      title: "Premium Portfolio",
+      title: "Portfolio",
       description: "A high-end, editorial-style personal brand portfolio designed with luxury dark aesthetics, fluid framer-motion animations, and an optimized Vite architecture. Showcases professional capabilities through asymmetric design and strong typography.",
       tech: ["React.js", "Tailwind CSS", "Framer Motion", "Vite"],
-      github: "https://github.com/DineshSivalanka",
+      image: "/project-portfolio.jpg",
+      github: "https://github.com/DineshSivalanka/My_Portfolio",
       demo: "#",
       align: "left"
+    },
+    {
+      id: "04",
+      title: "Naik Foods",
+      description: "A responsive, feature-rich web application designed for online food ordering and culinary browsing. Features an intuitive food menu interface, interactive cart drawer, real-time order tracking visualizer, and seamless Netlify deployment.",
+      tech: ["React.js", "JavaScript", "Tailwind CSS", "Netlify", "REST APIs"],
+      image: "/project-naikfoods.jpg",
+      github: "https://github.com/DineshSivalanka/naik-foods-assignment",
+      demo: "https://naik-foods-assignment.netlify.app/",
+      align: "right"
     }
   ];
 
@@ -48,7 +61,7 @@ const Projects = () => {
             <div className="w-12 h-[1px] bg-brand-gold/50"></div>
           </div>
           <h2 className="font-space font-extrabold text-[40px] sm:text-[56px] text-white uppercase tracking-tight">
-            SELECTED WORKS
+            PROJECT WORKS
           </h2>
         </motion.div>
 
@@ -68,17 +81,24 @@ const Projects = () => {
                 transition={{ duration: 0.8 }}
                 className="w-full lg:w-3/5 group relative"
               >
-                <div className="aspect-[16/10] w-full bg-brand-card rounded-2xl border border-brand-border overflow-hidden relative p-1 transition-transform duration-700 group-hover:-translate-y-2 group-hover:shadow-[0_20px_40px_-15px_rgba(253,224,71,0.1)]">
+                <div className="aspect-[16/10] w-full bg-brand-card rounded-2xl border border-brand-border overflow-hidden relative p-1 transition-transform duration-700 group-hover:-translate-y-2 group-hover:shadow-[0_20px_40px_-15px_rgba(253,224,71,0.15)]">
                   {/* Mockup Container */}
                   <div className="w-full h-full bg-[#0a0a0a] rounded-xl relative overflow-hidden flex flex-col">
-                    <div className="h-8 w-full border-b border-white/5 flex items-center px-4 gap-2 bg-[#121212]">
+                    <div className="h-8 w-full border-b border-white/10 flex items-center px-4 gap-2 bg-[#121212] z-10">
                       <div className="w-2.5 h-2.5 rounded-full bg-red-500/80"></div>
                       <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></div>
                       <div className="w-2.5 h-2.5 rounded-full bg-green-500/80"></div>
+                      <span className="text-[11px] font-mono text-gray-500 ml-2 truncate opacity-70">
+                        https://{project.title.toLowerCase().replace(/[^a-z0-9]/g, '')}.app
+                      </span>
                     </div>
-                    <div className="flex-1 w-full flex flex-col items-center justify-center p-8 relative">
-                      <div className="absolute inset-0 bg-gradient-to-br from-brand-gold/5 to-transparent"></div>
-                      <h3 className="font-space font-bold text-3xl sm:text-4xl text-white/20 uppercase tracking-widest text-center">{project.title}</h3>
+                    <div className="flex-1 w-full relative overflow-hidden bg-black">
+                      <img 
+                        src={project.image} 
+                        alt={project.title} 
+                        className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none"></div>
                     </div>
                   </div>
                 </div>

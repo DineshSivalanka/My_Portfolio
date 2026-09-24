@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion';
-import { Mail, ArrowRight, GitBranch as Github, User as Linkedin } from 'lucide-react';
+import { ArrowRight, FileText } from 'lucide-react';
+import { TypeAnimation } from 'react-type-animation';
+import { GithubIcon, LinkedinIcon, LeetcodeIcon, MailIcon } from './SocialIcons';
 
 const Hero = () => {
   return (
@@ -33,11 +35,24 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="inline-block border border-brand-gold/30 px-4 py-2 mb-6 self-start bg-brand-gold/5"
+            className="inline-flex items-center border border-brand-gold/30 px-4 py-2 mb-6 self-start bg-brand-gold/5 min-h-[42px]"
           >
-            <h2 className="text-[14px] sm:text-[16px] font-bold tracking-[0.1em] text-brand-gold uppercase">
-              SOFTWARE DEVELOPER & AI ENTHUSIAST
-            </h2>
+            <TypeAnimation
+              sequence={[
+                'JAVA PROGRAMMER',
+                2000, 
+                'SOFTWARE DEVELOPER & AI ENTHUSIAST',
+                2000,
+                'FULL STACK WEB DEVELOPER',
+                2000,
+                'ASPIRING TECH PROFESSIONAL',
+                2000,
+              ]}
+              wrapper="span"
+              speed={50}
+              repeat={Infinity}
+              className="text-[14px] sm:text-[16px] font-bold tracking-[0.1em] text-brand-gold uppercase"
+            />
           </motion.div>
 
           <motion.p 
@@ -68,7 +83,7 @@ const Hero = () => {
               View My Work <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
             </a>
             <a href="/Dinesh_Resume.pdf" target="_blank" rel="noopener noreferrer" className="group flex items-center justify-center gap-2 h-12 px-8 rounded-xl border border-brand-border bg-black/20 text-white font-bold text-[14px] transition-all hover:border-brand-gold hover:text-brand-gold">
-              Resume <Mail size={16} className="text-gray-400 group-hover:text-brand-gold transition-colors" />
+              Resume <FileText size={16} className="text-gray-400 group-hover:text-brand-gold transition-colors" />
             </a>
           </motion.div>
 
@@ -78,14 +93,17 @@ const Hero = () => {
             transition={{ duration: 0.6, delay: 0.6 }}
             className="flex items-center gap-5"
           >
-            <a href="https://github.com/DineshSivalanka" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-white transition-colors p-2 hover:bg-white/5 rounded-full">
-              <Github size={22} />
+            <a href="https://github.com/DineshSivalanka" target="_blank" rel="noopener noreferrer" title="GitHub" className="text-gray-500 hover:text-white transition-colors p-2.5 hover:bg-white/5 rounded-full">
+              <GithubIcon size={22} />
             </a>
-            <a href="https://www.linkedin.com/in/dinesh-venkata-kumar-sivalanka-5348842a9/" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-white transition-colors p-2 hover:bg-white/5 rounded-full">
-              <Linkedin size={22} />
+            <a href="https://www.linkedin.com/in/dinesh-venkata-kumar-sivalanka-5348842a9/" target="_blank" rel="noopener noreferrer" title="LinkedIn" className="text-gray-500 hover:text-white transition-colors p-2.5 hover:bg-white/5 rounded-full">
+              <LinkedinIcon size={22} />
             </a>
-            <a href="mailto:sivalankadinesh2005@gmail.com" className="text-gray-500 hover:text-white transition-colors p-2 hover:bg-white/5 rounded-full">
-              <Mail size={22} />
+            <a href="https://leetcode.com/u/sivalankadinesh2005/" target="_blank" rel="noopener noreferrer" title="LeetCode" className="text-gray-500 hover:text-brand-gold transition-colors p-2.5 hover:bg-white/5 rounded-full">
+              <LeetcodeIcon size={22} />
+            </a>
+            <a href="mailto:sivalankadinesh2005@gmail.com" title="Email" className="text-gray-500 hover:text-white transition-colors p-2.5 hover:bg-white/5 rounded-full">
+              <MailIcon size={22} />
             </a>
           </motion.div>
         </div>

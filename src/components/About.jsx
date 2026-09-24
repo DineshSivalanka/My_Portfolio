@@ -1,11 +1,38 @@
 import { motion } from 'framer-motion';
-import { Code, BookOpen, Cpu } from 'lucide-react';
+import { Code, BookOpen, Cpu, GraduationCap, Calendar, MapPin, Award } from 'lucide-react';
 
 const About = () => {
   const stats = [
     { label: "LeetCode Solved", value: "170+", icon: <Code size={20} /> },
     { label: "Education", value: "B.Tech CSE", icon: <BookOpen size={20} /> },
     { label: "Focus", value: "Full Stack", icon: <Cpu size={20} /> }
+  ];
+
+  const educationList = [
+    {
+      institution: "SRKR Engineering College",
+      location: "Bhimavaram, India",
+      period: "Jul 2024 – Present",
+      degree: "B.Tech in Computer Science & Engineering",
+      score: "CGPA: 9.23",
+      isCurrent: true
+    },
+    {
+      institution: "Smt. B. Seetha Polytechnic",
+      location: "Bhimavaram, India",
+      period: "Sept 2021 – April 2024",
+      degree: "Diploma in Computer Science & Engineering",
+      score: "Percentage: 96.5%",
+      isCurrent: false
+    },
+    {
+      institution: "Govt High School Yendagandi",
+      location: "Yendagandi, India",
+      period: "Jun 2020 – Jun 2021",
+      degree: "SSC (Secondary School Certificate)",
+      score: "CGPA: 9.7",
+      isCurrent: false
+    }
   ];
 
   return (
@@ -28,7 +55,8 @@ const About = () => {
           </h2>
         </motion.div>
 
-        <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 items-start">
+        {/* Narrative & Stats */}
+        <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 items-start mb-20">
           
           {/* Main Text Content */}
           <motion.div 
@@ -82,6 +110,62 @@ const About = () => {
           </motion.div>
 
         </div>
+
+        {/* Education History Cards */}
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="w-full pt-12 border-t border-brand-border"
+        >
+          <div className="flex items-center gap-3 mb-10">
+            <GraduationCap className="text-brand-gold" size={26} />
+            <h3 className="font-space font-bold text-[24px] sm:text-[28px] text-white uppercase tracking-tight">
+              EDUCATION JOURNEY
+            </h3>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {educationList.map((edu, idx) => (
+              <div 
+                key={idx} 
+                className="glass-card p-6 sm:p-8 flex flex-col justify-between relative group hover:border-brand-gold/60 transition-all duration-500"
+              >
+                {edu.isCurrent && (
+                  <span className="absolute top-4 right-4 text-[10px] font-bold uppercase tracking-wider text-brand-gold bg-brand-gold/10 border border-brand-gold/30 px-2.5 py-1 rounded-full">
+                    Current
+                  </span>
+                )}
+                <div>
+                  <div className="flex items-center gap-2 text-[12px] text-brand-gold font-mono font-medium mb-3">
+                    <Calendar size={14} />
+                    <span>{edu.period}</span>
+                  </div>
+                  <h4 className="font-space text-[18px] sm:text-[20px] font-bold text-white mb-2 group-hover:text-brand-gold transition-colors">
+                    {edu.institution}
+                  </h4>
+                  <div className="flex items-center gap-1.5 text-[13px] text-gray-400 mb-4">
+                    <MapPin size={13} className="text-gray-500" />
+                    <span>{edu.location}</span>
+                  </div>
+                  <p className="text-[14px] text-gray-300 font-medium leading-relaxed mb-6">
+                    {edu.degree}
+                  </p>
+                </div>
+
+                <div className="pt-4 border-t border-white/5 flex items-center justify-between">
+                  <span className="text-[11px] text-gray-500 uppercase tracking-wider font-semibold flex items-center gap-1">
+                    <Award size={13} className="text-brand-gold" /> Performance
+                  </span>
+                  <span className="text-[14px] font-bold text-brand-gold font-mono">
+                    {edu.score}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+
       </div>
     </section>
   );

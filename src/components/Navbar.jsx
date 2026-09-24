@@ -9,8 +9,10 @@ const Navbar = () => {
   const navLinks = [
     { name: 'HOME', href: '#home' },
     { name: 'ABOUT', href: '#about' },
+    { name: 'DSA', href: '#dsa' },
     { name: 'SKILLS', href: '#skills' },
     { name: 'PROJECTS', href: '#projects' },
+    { name: 'CERTIFICATIONS', href: '#certifications' },
     { name: 'CONTACT', href: '#contact' },
   ];
 
@@ -39,7 +41,7 @@ const Navbar = () => {
         </a>
 
         {/* Desktop Links */}
-        <div className="hidden lg:flex items-center gap-12 absolute left-1/2 -translate-x-1/2">
+        <div className="hidden lg:flex items-center gap-8 xl:gap-12 absolute left-1/2 -translate-x-1/2">
           {navLinks.map((link) => (
             <a
               key={link.name}

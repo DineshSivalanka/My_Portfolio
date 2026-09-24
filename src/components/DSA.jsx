@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Target, Code2, Trophy, Flame, Loader2, GitCommit } from 'lucide-react';
+import { Flame, Loader2, ArrowUpRight, Code2 } from 'lucide-react';
 import { ActivityCalendar } from 'react-activity-calendar';
 import './DSA.css';
 
@@ -110,6 +110,36 @@ const DSA = ({ theme }) => {
     { label: 'Hard', value: lcStats.hardSolved, color: '#ef4444' }
   ];
 
+  const platforms = [
+    {
+      name: 'GeeksforGeeks',
+      url: 'https://www.geeksforgeeks.org/profile/dineshsivalanka',
+      handle: '@dineshsivalanka',
+      desc: 'Practice & Problem Solving',
+      icon: 'https://cdn.simpleicons.org/geeksforgeeks/298D46',
+      badgeColor: '#298D46',
+      hoverBorder: 'hover:border-[#298D46]/60',
+    },
+    {
+      name: 'HackerRank',
+      url: 'https://www.hackerrank.com/profile/DineshSivalanka',
+      handle: '@DineshSivalanka',
+      desc: 'Algorithm Challenges & Badges',
+      icon: 'https://cdn.simpleicons.org/hackerrank/00EA64',
+      badgeColor: '#00EA64',
+      hoverBorder: 'hover:border-[#00EA64]/60',
+    },
+    {
+      name: 'LeetCode',
+      url: 'https://leetcode.com/u/sivalankadinesh2005/',
+      handle: '@sivalankadinesh2005',
+      desc: 'Contests & Solved Problems',
+      icon: 'https://cdn.simpleicons.org/leetcode/FFA116',
+      badgeColor: '#FFA116',
+      hoverBorder: 'hover:border-[#FFA116]/60',
+    },
+  ];
+
   const getLangIcon = (lang) => {
     const langLower = lang.toLowerCase();
     if (langLower.includes('java')) return 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg';
@@ -125,15 +155,37 @@ const DSA = ({ theme }) => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="flex flex-col items-center sm:items-start mb-16 sm:mb-24"
+          className="flex flex-col sm:flex-row sm:items-end justify-between mb-16 sm:mb-24 gap-6"
         >
-          <div className="flex items-center gap-4 mb-4">
-            <span className="text-[12px] font-bold tracking-[0.2em] text-brand-gold uppercase">06 //</span>
-            <div className="w-12 h-[1px] bg-brand-gold/50"></div>
+          <div>
+            <div className="flex items-center gap-4 mb-4">
+              <span className="text-[12px] font-bold tracking-[0.2em] text-brand-gold uppercase">02 //</span>
+              <div className="w-12 h-[1px] bg-brand-gold/50"></div>
+            </div>
+            <h2 className="font-space font-extrabold text-[40px] sm:text-[56px] text-white uppercase tracking-tight">
+              LEETCODE METRICS
+            </h2>
           </div>
-          <h2 className="font-space font-extrabold text-[40px] sm:text-[56px] text-white uppercase tracking-tight">
-            LEETCODE METRICS
-          </h2>
+
+          {/* Quick Platform Icon Links */}
+          <div className="flex items-center gap-3">
+            {platforms.map((platform) => (
+              <a
+                key={platform.name}
+                href={platform.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                title={`${platform.name} (${platform.handle})`}
+                className="group flex items-center justify-center w-11 h-11 rounded-xl bg-white/5 border border-white/10 hover:border-brand-gold hover:bg-white/10 transition-all duration-300"
+              >
+                <img 
+                  src={platform.icon} 
+                  alt={platform.name} 
+                  className="w-5 h-5 object-contain group-hover:scale-110 transition-transform duration-300" 
+                />
+              </a>
+            ))}
+          </div>
         </motion.div>
 
         <div className="flex flex-col gap-8">
@@ -188,6 +240,60 @@ const DSA = ({ theme }) => {
                   showWeekdayLabels={true}
                 />
               )}
+            </div>
+          </motion.div>
+
+          {/* Coding Platform Profiles: GeeksforGeeks, HackerRank, LeetCode */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="glass-card p-6 sm:p-8"
+          >
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 pb-4 border-b border-white/10 gap-2">
+              <h3 className="font-space text-lg text-white font-bold flex items-center gap-2">
+                <Code2 className="text-brand-gold" size={22} /> Coding Profiles & Platforms
+              </h3>
+              <span className="text-gray-400 text-xs font-semibold tracking-widest uppercase">
+                Practice & Problem Solving
+              </span>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {platforms.map((platform) => (
+                <a
+                  key={platform.name}
+                  href={platform.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`group relative flex items-center justify-between p-5 rounded-xl border border-white/10 bg-black/40 hover:bg-black/60 ${platform.hoverBorder} transition-all duration-300`}
+                >
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center p-2.5 group-hover:scale-110 group-hover:border-white/20 transition-all duration-300">
+                      <img 
+                        src={platform.icon} 
+                        alt={platform.name} 
+                        className="w-full h-full object-contain"
+                      />
+                    </div>
+                    <div>
+                      <h4 className="font-space font-bold text-white text-base group-hover:text-brand-gold transition-colors">
+                        {platform.name}
+                      </h4>
+                      <p className="text-xs text-gray-400 font-mono mt-0.5">
+                        {platform.handle}
+                      </p>
+                      <p className="text-[11px] text-gray-500 mt-1">
+                        {platform.desc}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center text-gray-400 group-hover:text-brand-gold group-hover:border-brand-gold/40 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all shrink-0">
+                    <ArrowUpRight size={17} />
+                  </div>
+                </a>
+              ))}
             </div>
           </motion.div>
 

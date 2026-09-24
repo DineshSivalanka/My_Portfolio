@@ -4,6 +4,7 @@ import About from './components/About';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
 import Experience from './components/Experience';
+import Certifications from './components/Certifications';
 import DSA from './components/DSA';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
@@ -15,10 +16,11 @@ function App() {
       <main className="w-full">
         <Hero />
         <About />
+        <DSA theme="dark" />
         <Skills />
         <Projects />
         <Experience />
-        <DSA theme="dark" />
+        <Certifications />
         <Contact />
       </main>
       <Footer />
